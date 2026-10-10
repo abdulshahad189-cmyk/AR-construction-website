@@ -1,0 +1,6 @@
+.filter-tools{display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:32px}
+.project-search{display:flex;flex-direction:column;gap:7px;font-size:9px;font-weight:600;min-width:220px}
+.project-search input{border:1px solid var(--line);background:transparent;padding:10px;font-size:10px;outline:none}
+.project-search input:focus{border-color:#a28a68;box-shadow:0 0 0 2px rgba(198,168,120,.17)}
+.filter-tools .filter-row{margin-bottom:0}
+@media(max-width:760px){.filter-tools{align-items:stretch;flex-direction:column;gap:16px}.project-search{min-width:0}}
