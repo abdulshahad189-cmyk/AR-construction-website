@@ -65,38 +65,3 @@ export const defaultHouseConstructionPackage: HouseConstructionPackage = {
     },
   ],
 }
-
-export function isHouseConstructionPackage(value: unknown): value is HouseConstructionPackage {
-  if (!value || typeof value !== 'object') return false
-  const packageValue = value as Record<string, unknown>
-  const validTextList = (list: unknown, maxItems: number) =>
-    Array.isArray(list) && list.length <= maxItems && list.every(item => typeof item === 'string' && item.trim().length > 0 && item.length <= 2000)
-  const validItems = (list: unknown) =>
-    Array.isArray(list) && list.length <= 80 && list.every(item =>
-      !!item && typeof item === 'object' &&
-      typeof item.item === 'string' && item.item.trim().length > 0 && item.item.length <= 200 &&
-      ['included', 'excluded', 'to_confirm'].includes(item.status),
-    )
-  return Number.isInteger(packageValue.startingRate) && Number(packageValue.startingRate) > 0 && Number(packageValue.startingRate) <= 1_000_000 &&
-    typeof packageValue.description === 'string' && packageValue.description.trim().length > 0 && packageValue.description.length <= 1000 &&
-    validItems(packageValue.scopeItems) && validItems(packageValue.separatelyQuotedCandidates) &&
-    validTextList(packageValue.qualityNotes, 30) && validTextList(packageValue.paymentMilestones, 30) && validTextList(packageValue.terms, 40) &&
-    Array.isArray(packageValue.faqs) && packageValue.faqs.length <= 30 && packageValue.faqs.every(faq =>
-      !!faq && typeof faq === 'object' &&
-      typeof faq.question === 'string' && faq.question.trim().length > 0 && faq.question.length <= 300 &&
-      typeof faq.answer === 'string' && faq.answer.trim().length > 0 && faq.answer.length <= 2000,
-    )
-}
-
-export function parseHouseConstructionPackage(text: string): HouseConstructionPackage {
-  let value: unknown
-  try {
-    value = JSON.parse(text)
-  } catch {
-    throw new Error('Enter valid JSON for the house construction package.')
-  }
-  if (!isHouseConstructionPackage(value)) {
-    throw new Error('Package JSON is invalid. Check the rate, text fields, lists, FAQ entries and item statuses.')
-  }
-  return value
-}

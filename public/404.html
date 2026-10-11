@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AR CONSTRUCTION</title>
+    <script>
+      const basePath = '/AR-construction-website/'
+      const requestedPath = window.location.pathname
+      if (requestedPath.startsWith(basePath)) {
+        const originalUrl = requestedPath + window.location.search + window.location.hash
+        window.location.replace(`${basePath}?p=${encodeURIComponent(originalUrl)}`)
+      }
+    </script>
+  </head>
+  <body>
+    <p>Taking you to the requested AR CONSTRUCTION page…</p>
+  </body>
+</html>

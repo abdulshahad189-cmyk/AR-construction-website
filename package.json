@@ -8,11 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint src vite.config.ts",
     "test": "vitest run",
-    "test:security": "node scripts/security-smoke.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.57.0",
     "framer-motion": "^12.23.0",
     "lucide-react": "^0.468.0",
     "react": "^19.1.0",

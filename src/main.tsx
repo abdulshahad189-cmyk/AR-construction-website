@@ -4,8 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './site/App'
 import './styles.css'
 import './search.css'
-import './admin.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode><BrowserRouter><App /></BrowserRouter></React.StrictMode>,
+  <React.StrictMode><BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}><App /></BrowserRouter></React.StrictMode>,
 )

@@ -53,10 +53,15 @@ export const companyWorkImages: CompanyWorkImage[] = [
   },
 ]
 
+export function publicAssetUrl(path: string): string {
+  return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
+}
+
 export function responsiveImageSrcSet(path: string, sourceWidth: number): string {
-  const prefix = path.replace(/\.jpg$/i, '')
+  const assetPath = publicAssetUrl(path)
+  const prefix = assetPath.replace(/\.jpg$/i, '')
   const sizes = sourceWidth > 960 ? [480, 960] : sourceWidth > 480 ? [480] : []
-  return sizes.map(width => `${prefix}-${width}w.jpg ${width}w`).concat(`${path} ${sourceWidth}w`).join(', ')
+  return sizes.map(width => `${prefix}-${width}w.jpg ${width}w`).concat(`${assetPath} ${sourceWidth}w`).join(', ')
 }
 
 // Curated editorial imagery for the design prototype. These are stock photos, not AR CONSTRUCTION projects.

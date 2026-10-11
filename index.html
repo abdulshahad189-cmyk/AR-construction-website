@@ -9,6 +9,12 @@
     <meta property="og:description" content="Thoughtful construction and interior design in Hyderabad, Telangana." />
     <meta property="og:type" content="website" />
     <title>AR CONSTRUCTION | Building Dreams. Crafting Spaces.</title>
+    <script>
+      const fallbackRoute = new URLSearchParams(window.location.search).get('p')
+      if (fallbackRoute?.startsWith('/AR-construction-website/') && !fallbackRoute.startsWith('//')) {
+        window.history.replaceState(null, '', fallbackRoute)
+      }
+    </script>
     <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
